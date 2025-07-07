@@ -1,13 +1,15 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiHelpCircle } from 'react-icons/fi';
+import { FiHelpCircle, FiUser, FiUserPlus } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import ImageSlider from '../components/ImageSlider';
 import HelpModal from '../components/HelpModal';
 import CustomCursor from '../components/CustomCursor';
 
 const Home = () => {
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100">
@@ -21,22 +23,50 @@ const Home = () => {
         className="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-40"
       >
         <div className="container mx-auto px-4 py-6">
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-4xl md:text-5xl font-bold text-center bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent"
-          >
-            ABVP May I Help You
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-center text-gray-600 mt-2 text-lg"
-          >
-            Your trusted partner for assistance and support
-          </motion.p>
+          <div className="flex justify-between items-center">
+            <div className="text-center flex-1">
+              <motion.h1
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent"
+              >
+                ABVP May I Help You
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-gray-600 mt-2 text-lg"
+              >
+                Your trusted partner for assistance and support
+              </motion.p>
+            </div>
+            
+            <div className="flex gap-3">
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                onClick={() => navigate('/login')}
+                className="bg-white text-orange-600 px-4 py-2 rounded-xl font-semibold hover:bg-orange-50 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover-element inline-flex items-center gap-2 border border-orange-200"
+              >
+                <FiUser className="w-4 h-4" />
+                Login
+              </motion.button>
+              
+              <motion.button
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                onClick={() => navigate('/register')}
+                className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-xl font-semibold hover:from-orange-600 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl hover-element inline-flex items-center gap-2"
+              >
+                <FiUserPlus className="w-4 h-4" />
+                Register
+              </motion.button>
+            </div>
+          </div>
         </div>
       </motion.header>
 
